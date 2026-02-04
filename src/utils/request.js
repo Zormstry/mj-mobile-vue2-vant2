@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: 'http://interview-api-t.itheima.net',
+  baseURL: 'https://interview-api-t.itheima.net', // 只保留这一行
   timeout: 5000
 })
 
@@ -9,11 +9,10 @@ const request = axios.create({
 request.interceptors.request.use(
   function (config) {
     config.headers.Authorization =
-      'Brarer ' + localStorage.getItem('mobile-token')
+      'Bearer ' + localStorage.getItem('mobile-token') // 修正拼写
     return config
   },
   function (error) {
-    // 对请求错误做些什么
     return Promise.reject(error)
   }
 )
