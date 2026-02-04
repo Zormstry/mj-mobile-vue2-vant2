@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.00" />
+        <title>卡片交互</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+
+            body{
+                background-color: rgb(247, 224, 228);
+                height: 95vh;
+            }
+
+            #title{
+                text-align: center;
+                padding-top: 5vh;
+                color: rgb(227, 142, 156);
+            }
+
+            .container{
+                display: flex;
+                width: 80%;
+                height:80%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .card{
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 10vh;
+                height: 90%;
+                color: #fff;
+                flex: 1;
+                margin: 10px;
+                cursor: pointer;
+                position: relative;
+                transition: all 1s ease-in-out;
+            }
+
+            .card.active{
+                flex: 5;
+            }
+
+            .card h3{
+                opacity: 0;
+                font-size: 30px;
+                position: absolute;
+                bottom: 0vh;
+                left:3vw;
+                transition: opacity 0.3s ease-in;
+            }
+
+            .card.active h3{
+                opacity: 1;
+                transition: opacity 0.3s ease-in 0.4s;
+            }
+        </style>
+
+    </head>
+    <body>
+      
+<div style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
+  <button 
+    onclick="window.history.back()" 
+    style="padding: 8px 16px; color: black; border: none; border-radius: 4px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+  >
+    返回
+  </button>
+</div>
+        <h1 id="title">卡片交互</h1>
+        <div class="container">
+            <!-- 修改点：改为正确的图片路径 -->
+            <div class="card active" style="background-image: url(images/1.jpg);">
+                <h3>浅生离</h3>
+            </div>
+       
+            <div class="card" style="background-image: url(images/2.jpg);">
+                <h3>波奇酱</h3>
+            </div>
+    
+            <div class="card" style="background-image: url(images/3.jpg);">
+                <h3>今汐</h3>
+            </div>
+
+            <div class="card" style="background-image: url(images/4.jpg);">
+                <h3>阿尼亚</h3>
+            </div>
+        </div>
+        
+        <script>
+            const cards = document.querySelectorAll('.card')
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    removeActiveClasses();
+                    card.classList.add('active');
+                })
+            })
+        
+            function removeActiveClasses() {
+                cards.forEach(card => {
+                    card.classList.remove('active')
+                })
+            }
+        </script>
+    </body>
+</html>
