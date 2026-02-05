@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.00" />
+        <title>进度步骤</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            :root {
+    --line-border-fill: #3498db;
+    --line-border-empty: #e0e0e0;
+}
+       body {
+    background-color: rgb(248, 218, 224);
+    height: 95vh;
+}
+
+     #title {
+    text-align: center;
+    padding-top: 5vh;
+}
+
+.container {
+    display: block;
+}
+
+.progress-container {
+    display: flex;                  
+    width: 300px;
+    justify-content: space-between;
+    margin-top: 40vh;
+
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.progress-container::before{
+    content: '';
+    background-color: var(--line-border-empty);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height:5px;
+    width: 100%;
+    z-index: -1;
+   
+}
+
+.progress{
+    background-color: var(--line-border-fill);
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+     height: 5px;
+    width: 0%;
+    z-index: -1;
+     transition: 0.4s ease-in-out;
+}
+
+.circle{
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #999;
+    border: 3px solid var(--line-border-empty);
+    transition: all 0.4s ease-in-out;
+}
+
+.circle.active{
+    border-color: var(--line-border-fill);
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-container{
+    display: flex;
+     align-items: center;
+    justify-content: center;
+}
+
+.btn{
+    background-color:var(--line-border-fill);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 3vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    padding: 8px 30px;
+}
+
+.btn:disabled {
+    background-color: var(--line-border-empty);
+    cursor: not-allowed;
+}
+        </style>
+    </head>
+    <body>
+       <div style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
+  <button 
+    onclick="window.history.back()" 
+    style="padding: 8px 16px; color: black; border: none; border-radius: 4px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+  >
+    返回
+  </button>
+</div>
+        
+      <h1 id="title">进度步骤</h1>
+      <div class="container">
+        <div class="progress-container">
+            <div class="progress" id="progress"></div>
+            <div class="circle active">1</div>
+            <div class="circle">2</div>
+            <div class="circle">3</div>
+            <div class="circle">4</div>
+        </div>
+        <div class="btn-container">
+      <button class="btn" id="prev" disabled>Prev</button>
+      <button class="btn" id="next">Next</button>
+      </div>
+      <script>
+        const progress = document.getElementById('progress');
+        const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const circles = document.querySelectorAll('.circle');
+
+let currentStep = 1;
+
+nextBtn.addEventListener('click', () => {
+    currentStep++;
+
+    if(currentStep > circles.length) {
+        currentStep = circles.length;
+    }
+
+    update();
+});
+
+prevBtn.addEventListener('click', () => {
+    currentStep--;
+
+    if(currentStep < 1) {
+        currentStep = 1;
+    }
+
+    update();
+});
+
+function update() {
+    circles.forEach((circle, index) => {
+        if(index < currentStep) {
+            circle.classList.add('active');
+        } else {
+            circle.classList.remove('active');
+        }
+    });
+
+    const actives = document.querySelectorAll('.active');
+
+    //进度条进度
+    progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%';
+
+    if(currentStep === 1) {
+        prev.disabled = true;
+    } else if(currentStep === circles.length) {
+        next.disabled = true;
+    } else {
+        prev.disabled = false;
+        next.disabled = false;
+    }
+}
+      </script>
+    </body>
+</html>

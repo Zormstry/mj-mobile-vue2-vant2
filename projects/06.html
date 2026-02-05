@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.00" />
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        :root{
+            --input-width:150px;
+            --search-bar-height:40px;
+        }
+
+        body{
+            background-color: #71afe5;
+            height: 95vh;
+        }
+
+        #title{
+            color:#fff;
+            text-align: center;
+            padding-top: 5vh;
+        }
+
+        .container{
+            width: 100%;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .loginpanel{
+            padding: 20px 40px;
+            border-radius: 10px;
+            background-color: #002d505f;
+            box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .title{
+            color: #fff;
+            text-align: center;
+        }
+
+        .inputline{
+            position: relative;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            width: 300px;
+        }
+
+        .inputline input{
+            background-color: transparent;
+            border: 0;
+            border-bottom: 2px #fff solid;
+            width: 100%;
+            padding: 15px 0;
+            color:#fff;
+            font-size: 1rem;
+            outline: 0;
+        }
+
+        .inputline label{
+            position: absolute;
+            top: 15px;
+            left: 0;
+            color: #fff;
+            pointer-events: none;
+            font-size: 1.2rem;
+            transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .inputline input:focus + label,
+.inputline input:valid + label {
+  color: #7ed6df;
+  transform: translateY(-30px);
+  transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+        .btn{
+            cursor: pointer;
+            width: 100%;
+            background-color: #c7e0f4;
+            padding: 15px;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .btn:active{
+            transform: scale(0.98);
+        }
+
+        .loginpanel a{
+            text-decoration: none;
+            color: #c7e0f4;
+        }
+
+        .loginpanel p{
+            color: #fff;
+        }
+    </style>
+    </head>
+    <body>
+        <div style="position: fixed; top: 10px; right: 18px; z-index: 1000;">
+  <button 
+    onclick="window.history.back()" 
+    style="padding: 8px 16px; color: black; border: none; border-radius: 4px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+  >
+    返回
+  </button>
+</div>
+        <h1 id="title">登陆面板</h1>
+        <div class="container">
+            <form class="loginpanel">
+                <h1 class="title">Please Login</h1>
+                <div class="inputline">
+                    <input type="text" required>
+                    <label>Email</label>
+                </div>
+                <div class="inputline">
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <button class="btn">Login</button>
+                <p class="text">Don't have an account?<a href="#">Register</a></p>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.00" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+     <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #f5d269;
+            height: 100%;
+        }
+
+        #title{
+            text-align: center;
+            color: #183153;
+            padding-top: 5vh;
+        }
+
+        .container{
+            width: 100%;
+            height: 100%;
+            padding: 10px 0;
+            margin: 100px auto;
+            background-color: #fff9db;
+            border-radius: 20px;
+            border:4px solid #183153 ;
+            box-shadow: 0 10px 0px #183153;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn{
+            padding: 15px 50px;
+            margin: 0 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            border-radius: 5px;
+            color: #183153;
+            background-color: #ffd43b;
+            cursor: pointer;
+            border: 2px solid #183153;
+            box-shadow: 0 5px 0 #183153;
+            transition: all 0.5s ease;
+        }
+
+        .btn:active{
+            box-shadow: none;
+            transform: translateY(5px);
+            transition: all 0.05s ease;
+        }
+
+        .btn:hover{
+            background-color: #fab005;
+        }
+
+        .btn-container{
+            margin: 20px 0;
+        }
+
+        .text-container{
+            padding:  80px;
+            width: 100%;
+        }
+
+        
+        h2{
+            color: #183153;
+        }
+
+        p{
+            margin: 5px 0;
+        }
+     </style>
+    </head>
+    <body>
+        <div style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
+  <button 
+    onclick="window.history.back()" 
+    style="padding: 8px 16px; color: black; border: none; border-radius: 4px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+  >
+    返回
+  </button>
+</div>
+        <h1 id="title">2.5D按钮</h1>
+        <div class="container">
+            <div class="loginpanel">
+                <h2>Check Your Email</h2>
+                <P>We've just sent a link to your email.</P>
+                <P>Verify your address and we'll get you all set up!</P>
+            </div>
+            <div class="btn-container">
+                 <button class="btn">Check Your Email<i class="fas fa-arrow-right"></i></button>
+                  <button class="btn">Comfirm <i class="fas fa-check"></i></button>
+                   <button class="btn">Cannel<i class="fas fa-ban"></i></button>
+            </div>
+        </div>
+    </body>
+</html>
