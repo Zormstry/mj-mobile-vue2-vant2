@@ -2,36 +2,31 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
-import Home from '@/views/Home.vue' // 这个是布局组件
-import Detail from '@/views/Detail.vue'
+import Home from '@/views/Home.vue'
 import Projects from '@/views/Projects.vue'
-
-import Article from '@/views/Layout/Article.vue'
-import Collect from '@/views/Layout/Collect.vue'
-import Like from '@/views/Layout/Like.vue'
-import User from '@/views/Layout/User.vue'
+import PersonalHomepage from '@/views/Layout/PersonalHomepage.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/login', component: Login },
-  { path: '/register', component: Register },
-  { path: '/detail', component: Detail },
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/register',
+    component: Register
+  },
   {
     path: '/',
-    redirect: '/Login',
+    redirect: '/login' // 这里改为重定向到登录页
+  },
+  {
+    path: '/home',
     component: Home,
     children: [
-      { path: 'article', component: Article },
-      { path: 'collect', component: Collect },
-      { path: 'like', component: Like },
-      { path: 'user', component: User },
-
-      {
-        path: 'projects',
-        name: 'Projects',
-        component: Projects
-      }
+      { path: 'personal', component: PersonalHomepage },
+      { path: 'projects', component: Projects }
     ]
   }
 ]
@@ -41,4 +36,5 @@ const router = new VueRouter({
   routes
 })
 
+// 关键：添加这行导出语句
 export default router

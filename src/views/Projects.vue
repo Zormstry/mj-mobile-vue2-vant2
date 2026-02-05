@@ -10,7 +10,7 @@
           :title="`${item.id} ${item.name}`"
           :label="item.description"
           is-link
-          :url="item.url"
+          :url="getProjectUrl(item.id)"
         />
       </van-cell-group>
     </div>
@@ -25,83 +25,62 @@ export default {
       projectList: [
         {
           id: '01',
-          name: 'Expanding Cards',
-          description: '卡片展开/收缩效果',
-          url: '/projects/01.html'
+          name: '卡片展开/收缩效果'
         },
         {
           id: '02',
-          name: 'Progress Steps',
-          description: '进度步骤指示器',
-          url: '/projects/02.html'
+          name: '进度步骤指示器'
         },
         {
           id: '03',
-          name: 'Hide Side Navigation',
-          description: '隐藏式侧边导航栏',
-          url: '/projects/03.html'
+          name: '隐藏式侧边导航栏'
         },
         {
           id: '04',
-          name: 'Hidden Search',
-          description: '隐藏式搜索框动画',
-          url: '/projects/04.html'
+          name: '隐藏式搜索框动画'
         },
         {
           id: '05',
-          name: 'Curriculum Vitae',
-          description: '张三简历',
-          url: '/projects/05.html'
+          name: '分屏式登录页'
         },
         {
           id: '06',
-          name: 'Split Landing Page',
-          description: '分屏式登录页',
-          url: '/projects/06.html'
+          name: '登录面板设计'
         },
         {
           id: '07',
-          name: 'Login Panel',
-          description: '登录面板设计',
-          url: '/projects/07.html'
+          name: '异步函数演示'
         },
         {
           id: '08',
-          name: 'Asynchronous Function',
-          description: '异步函数演示',
-          url: '/projects/08.html'
+          name: '折叠卡片效果'
         },
         {
           id: '09',
-          name: 'Collapsed Card',
-          description: '折叠卡片效果',
-          url: '/projects/09.html'
+          name: '2.5D立体按钮'
         },
         {
           id: '10',
-          name: '2.5D Button',
-          description: '2.5D立体按钮',
-          url: '/projects/10.html'
+          name: '数字增长动画'
         },
         {
           id: '11',
-          name: 'Increasing Number',
-          description: '数字增长动画',
-          url: '/projects/11.html'
+          name: '电影应用界面'
         },
         {
           id: '12',
-          name: 'Movie App',
-          description: '电影应用界面',
-          url: '/projects/12.html'
-        },
-        {
-          id: '13',
-          name: 'Clock',
-          description: '时钟应用',
-          url: '/projects/13.html'
+          name: '时钟应用'
         }
       ]
+    }
+  },
+  methods: {
+    getProjectUrl (id) {
+      // 判断是否在 GitHub Pages 环境
+      const isGitHubPages = window.location.hostname.includes('github.io')
+      const basePath = isGitHubPages ? '/mj-mobile-vue2-vant2' : ''
+
+      return `${basePath}/projects/${id}.html`
     }
   }
 }

@@ -3,30 +3,39 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.00" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     <style>
-        *{
+      
+       *{
             box-sizing: border-box;
         }
 
+        :root{
+            --theme-color-dark:#22254b;
+            --theme-color-light:#373b69;
+            --header-height:100px;
+        }
+
         body{
-            background-color: rgb(236,236,236);
-            height: 95vh;
-            margin: 0;
+              font-family: 'ZCOOL XiaoWei', sans-serif;
+              background-color: var(--theme-color-dark);
+              margin: 0;
+              display: flex;
+              flex-direction: column;
         }
 
         #title{
+            color: white;
             text-align: center;
-            padding-top: 5vh;
+            line-height: var(--header-height);
+            box-shadow: 0 2px 6px 0 rgba(0,0,0,0.3);
         }
 
         .container{
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            flex-wrap: wrap;
             color: white;
-            margin-top: 100px;
-            background-color: #087f5b;
+            padding: 50px;
             width: 100%;
         }
 
@@ -34,20 +43,63 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 80px;
-            height: 300px;
-            margin: 20px;
+            position: relative;
             width: 300px;
-            
+            background-color: var(--theme-color-light);
+            border-radius: 10px;
+            box-shadow: 0 0 6px 0 rgba(0,0,0,0.3);
+            margin: 0 20px 40px;
+            overflow: hidden;
         }
 
-        .card p{
-            font-size: 1.5rem;
-            line-height: 0;
+        .card img{
+            height: 450px;
+            min-width: 100%;
+              border-radius: 10px 10px 0 0;
         }
 
-        .fas{
-            margin-bottom: 10px;
+        .info{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+            padding: 0 70px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .info .name{
+            width: 100%;
+            text-align: center;
+        }
+
+        .info .score{
+            position: absolute;
+            right: 20px;
+            color: #f39c12;
+            text-align: center;
+            background-color: var(--theme-color-dark);
+            height: 30px;
+            line-height: 30px;
+            width: 40px;
+            border-radius: 5px;
+        }
+
+        .intro{
+            position: absolute;
+            bottom: 0;
+            color: black;
+            padding: 20px;
+            z-index: 1;
+            background-color: rgb(236,236,236);
+            box-shadow: 0 0 6px 0 rgba(0,0,0,0.3);
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .intro.hover{
+            transform: translateY(0%);
+            transition: transform 0.5s ease-in-out;
         }
     </style>
     </head>
@@ -60,30 +112,85 @@
     返回
   </button>
 </div>
-        <h1 id="title">递增数字</h1>
+        <div class="header">
+            <h1 id="title">精选电影</h1>
+        </div>
         <div class="container">
-            <div class="card"><i class="fas fa-thumbs-up fa-4x"></i><p class="number" data-target="5682"></p><p>点赞数</p></div>
-            <div class="card"><i class="fas fa-star fa-4x"></i><p class="number" data-target="1658"></p><p>收藏数</p></div>
-            <div class="card"><i class="fas fa-play-circle fa-4x"></i><p class="number" data-target="33572"></p><p>播放数</p></div>
+            <div class="card">
+                 <div class="intro">兔子警官朱迪和狐狸尼克成为搭档后，动物城看似实现了表面上的和谐。但一场新的阴谋正在悄然酝酿——一种神秘的"退化病毒"开始在动物城中蔓延，使现代化动物们逐渐失去理智，回归原始野性。朱迪和尼克必须联手深入动物城最黑暗的角落，揭开这场危机背后的真相，同时面对两人之间逐渐升温的感情与信任的考验……</div>
+                <img src="5.jpg"> <!-- 改为5.jpg -->
+                <div class="info">
+                    <h3 class="name">疯狂动物城2</h3>
+                    <h3 class="score">9.9</h3>
+                </div>
+                </div>
+                <div class="card">
+                 <div class="intro">艾莎女王听到来自远方的神秘呼唤，这股声音不仅威胁着阿伦黛尔王国的安全，更揭示了一个被遗忘已久的家族秘密。为了拯救王国并追寻自我真相，艾莎与安娜、克里斯托弗、雪宝一行踏上前往魔法森林的冒险旅程。在那里，她们将揭开阿伦黛尔历史的真相，面对古老魔法的考验，并发现艾莎魔法力量的真正起源……</div>
+                <img src="6.jpg"> <!-- 改为6.jpg -->
+                <div class="info">
+                    <h3 class="name">冰雪奇缘2</h3>
+                    <h3 class="score">9.8</h3>
+                </div>
+                </div>
+                <div class="card">
+                <div class="intro">银行家安迪·杜佛兰被冤枉杀害妻子及其情人，被判终身监禁，送入肖申克监狱。在残酷的监狱生活中，他凭借过人的金融知识和坚韧不拔的意志，逐渐赢得狱友的尊重和狱警的利用。二十年的隐忍与谋划，一场精心策划的越狱计划悄然进行。当希望成为最危险的东西，安迪用一把小锤子凿出的不只是逃生通道，更是对自由与救赎最深刻的诠释……</div>
+                <img src="7.jpg"> <!-- 改为7.jpg -->
+                <div class="info">
+                    <h3 class="name">肖申克的救赎</h3>
+                    <h3 class="score">9.7</h3>
+                </div>
+                </div>
+                 <div class="card">
+                <div class="intro">光头强偶然发现了一张神秘的藏宝图，这张图竟然指向狗熊岭深处埋藏的古老宝藏。正当他准备独自寻宝时，熊大熊二意外介入，一场啼笑皆非的夺宝之旅就此展开。然而，宝藏背后隐藏着更大的秘密——一个企图利用宝藏力量破坏森林的邪恶组织正在暗中行动。熊强组合必须放下往日恩怨，联手保护家园，展开一场惊险刺激的森林保卫战……</div>
+                <img src="8.jpg"> <!-- 改为8.jpg -->
+                <div class="info">
+                    <h3 class="name">熊出没之夺宝熊兵</h3>
+                    <h3 class="score">8.1</h3>
+                </div>
+                </div>
+                 <div class="card">
+                <div class="intro">生活在深山小镇的女高中生三叶，某天起开始与东京少年立花泷在梦中互换身体。两人在彼此的时空里过着对方的生活，通过留言逐渐了解、影响对方。然而，当彗星划过天际的夜晚，这场奇妙的交换突然终止。泷决心寻找梦中的小镇和那个陌生的女孩，却发现了一个惊人的事实——他们不仅跨越了空间，更横跨了三年的时间鸿沟……</div>
+                <img src="9.jpg"> <!-- 改为9.jpg -->
+                <div class="info">
+                    <h3 class="name">你的名字</h3>
+                    <h3 class="score">8.9</h3>
+                </div>
+                </div>
+                 <div class="card">
+                <div class="intro">远野贵树和筱原明里青梅竹马，因明里转学而分离。十三岁的贵树怀着强烈的思念，踏上了前往栃木的漫长列车之旅。多年后，已成人的贵树在东京忙碌生活，与交往三年的女友水野理纱的感情却渐行渐远。又是一个樱花飘落的季节，贵树与明里在铁路平交道口擦肩而过，当列车驶过，对面却已空无一人……樱花飘落的速度是每秒五厘米，那么两颗心需要多久才能靠近？</div>
+                <img src="10.jpg"> <!-- 改为10.jpg -->
+                <div class="info">
+                    <h3 class="name">秒速5厘米</h3>
+                    <h3 class="score">8.3</h3>
+                </div>
+                </div>
+                 <div class="card">
+                <div class="intro">杰克船长发现自己正遭遇着各种厄运的困扰，这一切的源头竟与他的过往有关。为了打破诅咒，他必须找到传说中的海神波塞冬的三叉戟。在寻宝途中，他遇到了自己疏远多年的儿子亨利，以及天文学家卡琳娜。三人组成 unlikely 的联盟，对抗令人畏惧的萨拉查船长——一位誓言杀光所有海盗的亡灵船长。加勒比海的命运，掌握在这群 unlikely 的英雄手中……</div>
+                <img src="11.jpg"> <!-- 改为11.jpg -->
+                <div class="info">
+                    <h3 class="name">加勒比海盗5</h3>
+                    <h3 class="score">7.3</h3>
+                </div>
+                </div>
+                 <div class="card">
+               <div class="intro">作曲家戴维·塞维尔正为创作瓶颈苦恼时，三只会说话、能唱歌的花栗鼠——阿尔文、西蒙、西奥多意外闯入了他的生活。最初只想赶走这些"麻烦精"的戴维，意外发现它们惊人的音乐天赋。在经纪人伊恩的包装下，三只花栗鼠一夜成名，成为流行乐坛的新宠。但随着名气越来越大，花栗鼠们开始迷失自我，戴维必须帮助它们找回初衷，并在商业利益与真实情感之间做出选择……</div>
+                <img src="12.jpg"> <!-- 改为12.jpg -->
+                <div class="info">
+                    <h3 class="name">鼠来宝1</h3>
+                    <h3 class="score">7.4<h3>
+                </div>
+                </div>
         </div>
         <script>
-            const counters = document.querySelectorAll('.number');
-            counters.forEach(counter =>{
-                counter.innerText = 0;
-                const updateCounter = () =>{
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    const number = parseInt(counter.innerText);
-                    const increment = target / 200;
-
-                    if(number < target){
-                        counter.innerText = Math.ceil(number + increment);
-                        setTimeout(updateCounter,4);
-                    }else{
-                        counter.innerText = target;
-                    }
-                }
-                updateCounter();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseover',() => {
+                    card.firstElementChild.classList.add('hover');
+                })
+                card.addEventListener('mouseout',() =>{
+                    card.firstElementChild.classList.remove('hover');
+                })
             })
-        </script>
+            </script>
     </body>
 </html>

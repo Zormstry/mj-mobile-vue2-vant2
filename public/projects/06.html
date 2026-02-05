@@ -7,120 +7,102 @@
         *{
             box-sizing: border-box;
         }
+
+        :root{
+            --input-width:150px;
+            --search-bar-height:40px;
+        }
+
         body{
-            margin: 0;
-            background-color: rgb(0,0,0);
-            height: 100vh;
-            overflow: hidden;
+            background-color: #71afe5;
+            height: 95vh;
+        }
+
+        #title{
+            color:#fff;
+            text-align: center;
+            padding-top: 5vh;
         }
 
         .container{
             width: 100%;
-            height: 100%;
+            margin-top: 50px;
             display: flex;
             justify-content: center;
         }
 
-        .splitleft{
+        .loginpanel{
+            padding: 20px 40px;
+            border-radius: 10px;
+            background-color: #002d505f;
+            box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .title{
+            color: #fff;
+            text-align: center;
+        }
+
+        .inputline{
             position: relative;
-            width: 50%;
-            height: 100%;
-            flex: 1;
-            background: url('left.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            transition: flex 1s ease-in-out;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            width: 300px;
         }
 
-         .splitright{
-            position: relative;
-            width: 50%;
-            height: 100%;
-            flex: 1;
-            background: url('right.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            transition: flex 1s ease-in-out;
-        }
-       
-
-        .splitleft:before{
-            content: '';
-            position: absolute;
+        .inputline input{
+            background-color: transparent;
+            border: 0;
+            border-bottom: 2px #fff solid;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            transition: background-color 1s ease-in-out;
+            padding: 15px 0;
+            color:#fff;
+            font-size: 1rem;
+            outline: 0;
         }
 
-        .splitright:before{
-            content: '';
+        .inputline label{
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            transition: background-color 1s ease-in-out;
+            top: 15px;
+            left: 0;
+            color: #fff;
+            pointer-events: none;
+            font-size: 1.2rem;
+            transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
         }
 
-        .splitleft:hover{
-            flex: 3;
-            transition: flex 1.5s ease-in-out;
-        }
-
-        .splitright:hover{
-            flex: 3;
-            transition: flex 1.5s ease-in-out;
-        }
-
-        .splitleft:hover::before{
-            background-color: rgba(0, 0, 0, 0);
-        }
-
-         .splitright:hover::before{
-            background-color: rgba(0, 0, 0, 0);
-        }
+        .inputline input:focus + label,
+.inputline input:valid + label {
+  color: #7ed6df;
+  transform: translateY(-30px);
+  transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+}
 
         .btn{
-            position: absolute;
-            bottom: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 15%;
-            height: 5vw;
+            cursor: pointer;
+            width: 100%;
+            background-color: #c7e0f4;
+            padding: 15px;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .btn:active{
+            transform: scale(0.98);
+        }
+
+        .loginpanel a{
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.5vw;
+            color: #c7e0f4;
+        }
+
+        .loginpanel p{
             color: #fff;
-    border: #fff solid 0.2vw;
-    cursor: pointer;
         }
-
-        .splitleft .btn:hover{
-             background-color: rgb(221, 177, 95);
-        }
-
-         .splitright .btn:hover{
-             background-color: rgb(133, 190, 242);
-        }
-
-        h1{
-            position: absolute;
-            bottom: 55%;
-            left: 50%;
-            transform: translateX(-50%);
-        font-weight: bold;
-    font-size: 3vw;
-    color: #fff;
-    text-shadow: 0 0 0.5vw rgba(0, 0, 0, 0.3);
-        }
-
     </style>
     </head>
     <body>
-        <div style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
+        <div style="position: fixed; top: 10px; right: 18px; z-index: 1000;">
   <button 
     onclick="window.history.back()" 
     style="padding: 8px 16px; color: black; border: none; border-radius: 4px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
@@ -128,15 +110,21 @@
     返回
   </button>
 </div>
+        <h1 id="title">登陆面板</h1>
         <div class="container">
-            <div class="splitleft">
-                <h1>王者荣耀</h1>
-                <a class="btn">开始游戏</a>
-            </div>
-            <div class="splitright">
-                <h1>原神</h1>
-                <a class="btn">点击进入</a>
-            </div>
+            <form class="loginpanel">
+                <h1 class="title">Please Login</h1>
+                <div class="inputline">
+                    <input type="text" required>
+                    <label>Email</label>
+                </div>
+                <div class="inputline">
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <button class="btn">Login</button>
+                <p class="text">Don't have an account?<a href="#">Register</a></p>
+            </form>
         </div>
     </body>
 </html>

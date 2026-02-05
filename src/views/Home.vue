@@ -2,8 +2,12 @@
   <div class="layout-page">
     <router-view></router-view>
     <van-tabbar route>
-      <van-tabbar-item to="/article" icon="notes-o">面经</van-tabbar-item>
-      <van-tabbar-item to="/projects" icon="star-o">练习项目</van-tabbar-item>
+      <van-tabbar-item to="/home/personal" icon="user-o"
+        >个人主页</van-tabbar-item
+      >
+      <van-tabbar-item to="/home/projects" icon="star-o"
+        >练习项目</van-tabbar-item
+      >
     </van-tabbar>
   </div>
 </template>

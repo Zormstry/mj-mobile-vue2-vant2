@@ -30,12 +30,10 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import request from '../utils/request'
 import { registerUserAPI } from '../api/user'
+
 export default {
   name: 'register-page',
-  mounted () {},
   data () {
     return {
       username: '',
@@ -45,39 +43,23 @@ export default {
   methods: {
     async onSubmit (values) {
       console.log('submit', values)
-      // const { data: res } = await axios({
-      //   method: 'POST',
-      //   url: 'http://interview-api-t.itheima.net/h5/user/register',
-      //   data: values
-      // })
-      // console.log(res)
-      // const { data: res } = await request({
-      //   method: 'POST',
-      //   url: '/h5/user/register',
-      //   data: values
-      // })
-
-      // console.log(res)
-      // const { data: res } = await registerUserAPI(values)
-      // console.log(res)
       try {
         const { data: res } = await registerUserAPI(values)
         console.log(res)
         this.$toast('注册用户成功')
-        this.username = this.password = ''
+        this.username = ''
+        this.password = ''
         this.$router.push('/login')
       } catch (err) {
-        // console.log(err.response.data.message)
         if (err.response) {
-          // console.log(err.response.data.message)
           this.$toast(err.response.data.message)
         } else {
-          // console.log('注册失败')
           this.$toast('注册失败')
         }
       }
     }
-  }
+  },
+  mounted () {}
 }
 </script>
 

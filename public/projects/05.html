@@ -1,390 +1,126 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张三的个人主页</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.00" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            text-decoration: none;
+        *{
             box-sizing: border-box;
         }
-        
-        /* 隐藏radio按钮 */
-        .tab-input {
-            display: none;
-        }
-   
-        .navlist {
-            text-align: center;
-            padding: 20px 0;
+        body{
             margin: 0;
-            background-color: transparent;
-        }
-        
-        .tab-label {
-            display: inline-block;
-            height: 40px;
-            width: 120px;
-            line-height: 40px;
-            text-align: center;
-            margin: 0 8px;
-            cursor: pointer;
-            color: rgb(54, 54, 55);
-            background: linear-gradient(to bottom, #f9f9f9, #e8e8e8);
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .tab-label:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-        
-        /* 当对应的radio被选中时，改变标签样式 */
-        #tab1:checked ~ .content-block .navlist label[for="tab1"],
-        #tab2:checked ~ .content-block .navlist label[for="tab2"],
-        #tab3:checked ~ .content-block .navlist label[for="tab3"],
-        #tab4:checked ~ .content-block .navlist label[for="tab4"] {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            font-weight: bold;
-            border-color: #667eea;
-        }
-        
-        /* 整个页面的背景渐变 */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-        
-        /* 三区块布局样式 */
-        .header-block {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            text-align: center;
-            padding: 40px 0;
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        /* 白色区块添加轻微阴影和圆角 */
-        .content-block {
-            background-color: rgba(255, 255, 255, 0.95);
-            min-height: 400px;
-            margin: 20px auto;
-            max-width: 1000px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        }
-        
-        /* 页脚区块样式更新 */
-        .footer-block {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 30px;
-            color: white;
-        }
-        
-        .footer-block a {
-            color: #ecf0f1;
-        }
-        
-        .footer-block a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-        
-        .page-content {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 15px;
-            line-height: 1.7;
-        }
-        
-        /* 页面样式 */
-        .page {
-            display: none; /* 默认隐藏 */
-            padding: 20px 0;
-        }
-        
-        /* 当对应的radio被选中时，显示对应的页面 */
-        #tab1:checked ~ .content-block #page1,
-        #tab2:checked ~ .content-block #page2,
-        #tab3:checked ~ .content-block #page3,
-        #tab4:checked ~ .content-block #page4 {
-            display: block;
-        }
-        
-        /* 表格样式 */
-        .experience-table {
-            width: 500px;
-            margin: 30px auto;
-            border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            border-radius: 8px;
+            background-color: rgb(0,0,0);
+            height: 100vh;
             overflow: hidden;
         }
-        
-        .experience-table caption {
-            font-size: 1.3em;
-            font-weight: bold;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+
+        .container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
         }
-        
-        .experience-table th, 
-        .experience-table td {
-            border: 1px solid #e0e0e0;
-            padding: 12px;
-            text-align: center;
+
+        .splitleft{
+            position: relative;
+            width: 50%;
+            height: 100%;
+            flex: 1;
+            background: url('left.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: flex 1s ease-in-out;
         }
-        
-        .experience-table th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-            color: #444;
+
+         .splitright{
+            position: relative;
+            width: 50%;
+            height: 100%;
+            flex: 1;
+            background: url('right.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: flex 1s ease-in-out;
         }
-        
-        .experience-table tr:hover {
-            background-color: #f5f7ff;
+       
+
+        .splitleft:before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: background-color 1s ease-in-out;
         }
-        
-        /* 新添加行的样式 */
-        .new-row {
-            background-color: #f0f7ff;
-            animation: fadeIn 0.5s ease-in;
+
+        .splitright:before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: background-color 1s ease-in-out;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0.5; background-color: #e3f2fd; }
-            to { opacity: 1; }
+
+        .splitleft:hover{
+            flex: 3;
+            transition: flex 1.5s ease-in-out;
         }
-        
-        /* 输入框样式 */
-        .experience-table input {
-            width: 90%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 14px;
-            transition: all 0.3s;
+
+        .splitright:hover{
+            flex: 3;
+            transition: flex 1.5s ease-in-out;
         }
-        
-        .experience-table input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+
+        .splitleft:hover::before{
+            background-color: rgba(0, 0, 0, 0);
         }
-        
-        /* 操作单元格样式 */
-        .action-cell {
-            width: 80px;
+
+         .splitright:hover::before{
+            background-color: rgba(0, 0, 0, 0);
         }
-        
-        /* 按钮容器 */
-        .btn-container {
+
+        .btn{
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 25px 0;
-            gap: 15px;
-        }
-        
-        /* 按钮样式 - 渐变效果 */
-        .btn {
-            border: none;
-            outline: none;
-            width: 100px;
-            height: 40px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            user-select: none;
+            width: 15%;
+            height: 5vw;
+            text-decoration: none;
             font-weight: bold;
-            background: linear-gradient(to bottom, #f9f9f9, #e8e8e8);
-            color: #333;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
-            font-size: 14px;
+            font-size: 1.5vw;
+            color: #fff;
+    border: #fff solid 0.2vw;
+    cursor: pointer;
         }
-        
-        .btn:hover {
-            color: white;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+
+        .splitleft .btn:hover{
+             background-color: rgb(221, 177, 95);
         }
-        
-        .btn-delete {
-            background: linear-gradient(to bottom, #ffebee, #ffcdd2);
-            color: #c62828;
-            border-color: #ffcdd2;
-            font-size: 12px;
-            width: 60px;
-            height: 30px;
-            padding: 0;
+
+         .splitright .btn:hover{
+             background-color: rgb(133, 190, 242);
         }
-        
-        .btn-delete:hover {
-            background: linear-gradient(to bottom, #ff5252, #c62828);
-            color: white;
-            border-color: #c62828;
+
+        h1{
+            position: absolute;
+            bottom: 55%;
+            left: 50%;
+            transform: translateX(-50%);
+        font-weight: bold;
+    font-size: 3vw;
+    color: #fff;
+    text-shadow: 0 0 0.5vw rgba(0, 0, 0, 0.3);
         }
-        
-        /* 保存提示 */
-        .save-message {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            height: 20px;
-        }
-        
-        .save-message.show {
-            opacity: 1;
-        }
-        
-        /* 添加一些间距 */
-        h2 {
-            margin-top: 20px;
-            margin-bottom: 15px;
-            color: #333;
-            font-weight: 600;
-        }
-        
-        h3 {
-            margin-top: 15px;
-            margin-bottom: 10px;
-            color: #444;
-            font-weight: 500;
-        }
-        
-        p {
-            margin-bottom: 10px;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        ul {
-            margin-bottom: 20px;
-            padding-left: 20px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .content-block {
-                margin: 10px;
-                border-radius: 8px;
-            }
-            
-            .experience-table {
-                width: 95%;
-                font-size: 14px;
-            }
-            
-            .tab-label {
-                width: 100px;
-                margin: 5px;
-                font-size: 14px;
-            }
-            
-            .page-content {
-                padding: 0 10px;
-            }
-            
-            .btn-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .btn {
-                width: 90%;
-                max-width: 200px;
-            }
-        }
-        
-        /* 页面标题动画 */
-        .header-block h1 {
-            font-size: 2.5em;
-            margin: 0;
-            animation: fadeInDown 1s ease;
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* 页面切换动画 */
-        .page {
-            animation: fadeIn 0.5s ease;
-        }
-        
-        /* 链接样式 */
-        a {
-            color: #667eea;
-            transition: color 0.3s;
-        }
-        
-        a:hover {
-            color: #764ba2;
-            text-decoration: underline;
-        }
-        
-        /* 分隔线 */
-        hr {
-            border: none;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #ddd, transparent);
-            margin: 25px 0;
-        }
-        
-        /* 强调文本 */
-        strong {
-            color: #333;
-            font-weight: 600;
-        }
-        
-        /* 代码样式 */
-        code {
-            background-color: #f5f5f5;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 0.9em;
-            color: #d63384;
-        }
+
     </style>
-</head>
-<body>
-    <div style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
+    </head>
+    <body>
+        <div style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
   <button 
     onclick="window.history.back()" 
     style="padding: 8px 16px; color: black; border: none; border-radius: 4px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
@@ -392,390 +128,15 @@
     返回
   </button>
 </div>
-        
-    <!-- 第一个渐变区块：标题 -->
-    <div class="header-block">
-        <h1>张三的个人主页</h1>
-    </div>
-    
-    <!-- Radio按钮放在标题后面 -->
-    <input type="radio" name="tabs" id="tab1" class="tab-input" checked>
-    <input type="radio" name="tabs" id="tab2" class="tab-input">
-    <input type="radio" name="tabs" id="tab3" class="tab-input">
-    <input type="radio" name="tabs" id="tab4" class="tab-input">
- 
-    <!-- 第二个白色区块：主要内容区 -->
-    <div class="content-block">
-        <!-- 导航在白色区块内，背景透明 -->
-        <div class="navlist">
-            <label for="tab1" class="tab-label">首页</label>
-            <label for="tab2" class="tab-label">学校简介</label>
-            <label for="tab3" class="tab-label">专业介绍</label>
-            <label for="tab4" class="tab-label">兴趣爱好</label>
-        </div>
-        
-        <div class="page-content">
-            <div class="page" id="page1">
-                <h2>欢迎来到我的个人主页</h2>
-                <p>我是一名大二学生，目前在公司实习，正在学习 HTML 和网页制作，对前端开发很感兴趣。</p>
-                
-                <h3>基本信息</h3>
-                <p><strong>学校：</strong>XX大学</p>
-                <p><strong>专业：</strong>非计算机专业</p>
-                
-                <h3>正在学习的内容</h3>
-                <ul>
-                    <li>HTML基础</li>
-                    <li>CSS基础</li>
-                    <li>网页布局</li>
-                </ul>
-                
-                <!-- 动态表格放在首页 -->
-                <table class="experience-table" id="experienceTable">
-                    <caption>个人经历</caption>
-                    <thead>
-                        <tr>
-                            <th>自何年何月</th>
-                            <th>至何年何月</th>
-                            <th>在何地、何单位、任何值</th>
-                            <th>证明人</th>
-                            <th class="action-cell">操作</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <!-- 数据行将通过JavaScript动态生成 -->
-                    </tbody>
-                </table>
-                
-                <!-- 添加和保存按钮 -->
-                <div class="btn-container">
-                    <button class="btn" id="addBtn">添加行</button>
-                    <button class="btn" id="saveBtn">保存数据</button>
-                </div>
-                
-                <!-- 保存提示 -->
-                <div class="save-message" id="saveMessage"></div>
+        <div class="container">
+            <div class="splitleft">
+                <h1>王者荣耀</h1>
+                <a class="btn">开始游戏</a>
             </div>
-            
-            <!-- 学校简介页面 -->
-            <div class="page" id="page2">
-                <h2>学校：XX大学</h2>
-                <p>XX大学是一所综合性大学，位于美丽的城市中心。</p>
-                <p>学校创建于1950年，拥有完善的教学设施和优秀的师资力量。</p>
-                <p>校园环境优美，学习氛围浓厚，为学生提供了良好的学习和生活条件。</p>
-                
-                <h3>校园特色</h3>
-                <ul>
-                    <li>现代化的图书馆和实验室</li>
-                    <li>丰富的社团活动和体育设施</li>
-                    <li>国际化的交流合作项目</li>
-                    <li>优美的校园环境和绿色生态</li>
-                </ul>
-            </div>
-            
-            <!-- 专业介绍页面 -->
-            <div class="page" id="page3">
-                <h2>专业: 非计算机专业</h2>
-                <p>虽然我不是计算机专业的学生，但我对前端开发有着浓厚的兴趣。</p>
-                <p>通过自学和在线课程，我正在系统学习网页开发技术。</p>
-                <p>我相信兴趣是最好的老师，通过不断实践，我能够掌握前端开发技能。</p>
-                
-                <h3>学习路径</h3>
-                <ul>
-                    <li><strong>HTML/CSS：</strong>网页结构和样式基础</li>
-                    <li><strong>JavaScript：</strong>网页交互和动态效果</li>
-                    <li><strong>响应式设计：</strong>适配不同设备</li>
-                    <li><strong>前端框架：</strong>React/Vue等现代框架</li>
-                </ul>
-            </div>
-            
-            <!-- 兴趣爱好页面 -->
-            <div class="page" id="page4">
-                <h2>兴趣爱好</h2>
-                <p>除了学习前端开发，我还有许多其他的兴趣爱好：</p>
-                <ul>
-                    <li><strong>编程：</strong>喜欢用代码创造有趣的东西</li>
-                    <li><strong>阅读：</strong>特别喜欢科技和设计类书籍</li>
-                    <li><strong>运动：</strong>每周打篮球，保持健康体魄</li>
-                    <li><strong>音乐：</strong>业余时间学习吉他</li>
-                    <li><strong>摄影：</strong>记录生活中的美好瞬间</li>
-                    <li><strong>旅行：</strong>探索不同的文化和风景</li>
-                </ul>
-                
-                <hr>
-                
-                <h3>近期目标</h3>
-                <p>在接下来的一年里，我希望能够：</p>
-                <ul>
-                    <li>完成一个完整的个人项目</li>
-                    <li>掌握React框架的基本使用</li>
-                    <li>参与开源项目的贡献</li>
-                    <li>找到一份前端开发相关的实习</li>
-                </ul>
+            <div class="splitright">
+                <h1>原神</h1>
+                <a class="btn">点击进入</a>
             </div>
         </div>
-    </div>
-    
-    <!-- 第三个渐变区块：页脚 -->
-    <div class="footer-block">
-        <h2>联系方式</h2>
-        <p>邮箱: <a href="mailto:test@example.com">test@example.com</a></p>
-        <p>电话: 138-8888-8888</p>
-        <p>地址: XX省XX市XX区XX路XX号</p>
-        <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">© 2023 张三的个人主页 | 保留所有权利</p>
-    </div>
-
-    <script>
-        // 表格数据数组
-        let tableData = [];
-        
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取DOM元素
-            const addBtn = document.getElementById('addBtn');
-            const saveBtn = document.getElementById('saveBtn');
-            const tableBody = document.getElementById('tableBody');
-            const saveMessage = document.getElementById('saveMessage');
-            
-            // 从本地存储加载数据（页面加载时恢复数据）
-            loadData();
-            
-            // 添加行按钮点击事件
-            addBtn.addEventListener('click', addTableRow);
-            
-            // 保存按钮点击事件
-            saveBtn.addEventListener('click', saveData);
-            
-            // 添加新行函数
-            function addTableRow() {
-                // 创建新行数据对象
-                const newRowData = {
-                    id: Date.now(), // 使用时间戳作为唯一ID
-                    startDate: '',
-                    endDate: '',
-                    experience: '',
-                    witness: ''
-                };
-                
-                // 添加到数据数组
-                tableData.push(newRowData);
-                
-                // 更新表格显示
-                renderTable();
-                
-                // 显示添加成功提示
-                showMessage('新行已添加，请填写数据', '#667eea');
-            }
-            
-            // 渲染表格函数
-            function renderTable() {
-                // 清空表格内容
-                tableBody.innerHTML = '';
-                
-                // 如果数据为空，添加默认数据
-                if (tableData.length === 0) {
-                    // 添加默认数据
-                    tableData = [
-                        {
-                            id: 1,
-                            startDate: '2011年9月',
-                            endDate: '2017年8月',
-                            experience: 'xx省xx市xx小学,任班长',
-                            witness: '老杨'
-                        },
-                        {
-                            id: 2,
-                            startDate: '2017年9月',
-                            endDate: '2020年8月',
-                            experience: 'xx省xx市xx中学,任班长',
-                            witness: '老谢'
-                        },
-                        {
-                            id: 3,
-                            startDate: '2020年9月',
-                            endDate: '2023年8月',
-                            experience: 'xx省xx市xx高中,任班长',
-                            witness: '老贺'
-                        }
-                    ];
-                }
-                
-                // 遍历数据数组，创建表格行
-                tableData.forEach((row, index) => {
-                    const tableRow = document.createElement('tr');
-                    if (row.id > 3) {
-                        tableRow.className = 'new-row';
-                    }
-                    
-                    // 创建4个数据单元格
-                    for (let i = 0; i < 4; i++) {
-                        const cell = document.createElement('td');
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.placeholder = getPlaceholder(i);
-                        
-                        // 根据索引设置不同的值和事件
-                        switch(i) {
-                            case 0:
-                                input.value = row.startDate;
-                                input.addEventListener('input', function() {
-                                    row.startDate = this.value;
-                                });
-                                break;
-                            case 1:
-                                input.value = row.endDate;
-                                input.addEventListener('input', function() {
-                                    row.endDate = this.value;
-                                });
-                                break;
-                            case 2:
-                                input.value = row.experience;
-                                input.addEventListener('input', function() {
-                                    row.experience = this.value;
-                                });
-                                break;
-                            case 3:
-                                input.value = row.witness;
-                                input.addEventListener('input', function() {
-                                    row.witness = this.value;
-                                });
-                                break;
-                        }
-                        
-                        // 添加键盘事件支持
-                        input.addEventListener('keydown', function(event) {
-                            if (event.key === 'Enter') {
-                                event.preventDefault();
-                                moveToNextInput(this, i, row.id);
-                            }
-                        });
-                        
-                        cell.appendChild(input);
-                        tableRow.appendChild(cell);
-                    }
-                    
-                    // 创建操作单元格（删除按钮）
-                    const actionCell = document.createElement('td');
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'btn-delete';
-                    deleteBtn.textContent = '删除';
-                    deleteBtn.addEventListener('click', function() {
-                        deleteRow(row.id);
-                    });
-                    actionCell.appendChild(deleteBtn);
-                    tableRow.appendChild(actionCell);
-                    
-                    // 将行添加到表格主体
-                    tableBody.appendChild(tableRow);
-                });
-                
-                // 移除新行的高亮效果（1秒后）
-                setTimeout(() => {
-                    const newRows = document.querySelectorAll('.new-row');
-                    newRows.forEach(row => {
-                        row.classList.remove('new-row');
-                    });
-                }, 1000);
-            }
-            
-            // 获取placeholder文本
-            function getPlaceholder(index) {
-                const placeholders = [
-                    '请输入..',
-                    '请输入..',
-                    '请输入..',
-                    '请输入..'
-                ];
-                return placeholders[index] || '请输入';
-            }
-            
-            // 处理输入框之间的跳转
-            function moveToNextInput(currentInput, currentIndex, rowId) {
-                // 获取当前行的所有输入框
-                const currentRow = currentInput.closest('tr');
-                const inputs = currentRow.querySelectorAll('input');
-                
-                // 如果是最后一个输入框，添加新行
-                if (currentIndex === 3) {
-                    addTableRow();
-                } else {
-                    // 否则跳转到下一个输入框
-                    const nextInput = inputs[currentIndex + 1];
-                    if (nextInput) {
-                        nextInput.focus();
-                        nextInput.select();
-                    }
-                }
-            }
-            
-            // 删除行函数
-            function deleteRow(id) {
-                // 从数据数组中移除指定ID的行
-                tableData = tableData.filter(row => row.id !== id);
-                
-                // 更新表格显示
-                renderTable();
-                
-                // 显示删除成功提示
-                showMessage('行已删除', '#ff5252');
-            }
-            
-            // 保存数据函数
-            function saveData() {
-                // 保存到本地存储
-                localStorage.setItem('experienceTableData', JSON.stringify(tableData));
-                
-                // 显示保存成功提示
-                showMessage('数据已保存！刷新页面可以看到保存的数据。', '#2ecc71');
-            }
-            
-            // 从本地存储加载数据（页面加载时恢复数据）
-            function loadData() {
-                const savedData = localStorage.getItem('experienceTableData');
-                if (savedData) {
-                    tableData = JSON.parse(savedData);
-                    renderTable();
-                    showMessage('已加载保存的数据', '#667eea');
-                    
-                    // 3秒后隐藏提示
-                    setTimeout(() => {
-                        saveMessage.classList.remove('show');
-                    }, 3000);
-                } else {
-                    // 如果没有保存的数据，渲染默认数据
-                    renderTable();
-                }
-            }
-            
-            // 显示消息函数
-            function showMessage(text, color) {
-                saveMessage.textContent = text;
-                saveMessage.style.color = color;
-                saveMessage.classList.add('show');
-                
-                // 3秒后隐藏提示
-                setTimeout(() => {
-                    saveMessage.classList.remove('show');
-                }, 3000);
-            }
-            
-            // 添加页面切换时的平滑效果
-            const tabInputs = document.querySelectorAll('.tab-input');
-            tabInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    // 可以在这里添加页面切换的额外效果
-                    const pages = document.querySelectorAll('.page');
-                    pages.forEach(page => {
-                        if (page.style.display === 'block') {
-                            page.style.animation = 'none';
-                            setTimeout(() => {
-                                page.style.animation = 'fadeIn 0.5s ease';
-                            }, 10);
-                        }
-                    });
-                });
-            });
-        });
-    </script>
-</body>
+    </body>
 </html>

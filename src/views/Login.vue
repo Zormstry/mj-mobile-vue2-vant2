@@ -54,7 +54,7 @@ export default {
         localStorage.setItem('mobile-token', res.data.token)
         this.$toast('登录成功')
         this.username = this.password = ''
-        this.$router.push('/article')
+        this.$router.push('/home/personal')
       } catch (err) {
         // console.log(err.response.data.message)
         if (err.response) {
